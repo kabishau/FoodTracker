@@ -1,11 +1,3 @@
-//
-//  FoodTrackerTests.swift
-//  FoodTrackerTests
-//
-//  Created by Aleksey Kabishau on 0410..18.
-//  Copyright © 2018 Aleksey Kabishau. All rights reserved.
-//
-
 import XCTest
 @testable import FoodTracker
 
