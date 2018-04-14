@@ -10,8 +10,16 @@ import UIKit
     
     // add properties that can then be set in the Attributes inspector (@IBInspectable)
     // making code more generic
-    @IBInspectable var starSize: CGSize = CGSize(width: 44.0, height: 44.0)
-    @IBInspectable var statCount: Int = 5
+    @IBInspectable var starSize: CGSize = CGSize(width: 44.0, height: 44.0) {
+        didSet {
+            setupButtons()
+        }
+    }
+    @IBInspectable var statCount: Int = 5 {
+        didSet {
+            setupButtons()
+        }
+    }
 
     //MARK: Initialization
     
@@ -34,6 +42,15 @@ import UIKit
     //MARK: Private Methods
     
     private func setupButtons() {
+        
+        // clear any axisting buttons in case of using property observers on starCount and starSize
+        for button in ratingButtons {
+            removeArrangedSubview(button)
+            button.removeFromSuperview()
+        }
+        
+        ratingButtons.removeAll()
+        
         
         //creating five buttons
         for _ in 0..<statCount {
