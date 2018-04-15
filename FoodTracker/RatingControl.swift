@@ -51,12 +51,24 @@ import UIKit
         
         ratingButtons.removeAll()
         
+        // load Button Images
+        let bundle = Bundle(for: type(of: self))
+        // images can be loaded using the shorter UIImage(named:) but because the control is @IBDesignable, the setup code also needs to run in Interface Builder (you must explicitly specify the catalog’s bundle)
+        let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
+        let emptyStar = UIImage(named: "emptyStar", in: bundle, compatibleWith: self.traitCollection)
+        let highlightedStar = UIImage(named: "highlightedStar", in: bundle, compatibleWith: self.traitCollection)
+        
         
         //creating five buttons
         for _ in 0..<statCount {
             
             let button = UIButton()
-            button.backgroundColor = UIColor.red
+            
+            // set the button images
+            button.setImage(emptyStar, for: UIControlState.normal)
+            button.setImage(filledStar, for: UIControlState.selected)
+            button.setImage(highlightedStar, for: UIControlState.highlighted)
+            button.setImage(highlightedStar, for: [UIControlState.selected, UIControlState.highlighted])
             
             // add constraints
             button.translatesAutoresizingMaskIntoConstraints = false
