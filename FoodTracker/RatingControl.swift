@@ -6,7 +6,11 @@ import UIKit
     //MARK: Properties
     
     private var ratingButtons = [UIButton]()
-    var rating = 0
+    var rating = 0 {
+        didSet {
+            updateButtonSelectionStates()
+        }
+    }
     
     // add properties that can then be set in the Attributes inspector (@IBInspectable)
     // making code more generic
@@ -99,10 +103,16 @@ import UIKit
             
             // add newly created in loop button to the ratingButton array
             ratingButtons.append(button)
+            
+            updateButtonSelectionStates()
         }
     }
     
     private func updateButtonSelectionStates() {
         
+        for (index, button) in ratingButtons.enumerated() {
+            // if the index of a button is less than the rating, that button should be selected
+            button.isSelected = index < rating
+        }
     }
 }
