@@ -36,7 +36,23 @@ import UIKit
     //MARK: Button Action
     
     @objc func ratingButtonTapped(button: UIButton) {
-        print("Button Tapped")
+        
+        guard let index = ratingButtons.index(of: button) else {
+            fatalError("The button, \(button), is not in the ratingButtons array: \(ratingButtons)")
+        }
+        
+        // calculate the rating of selected button
+        let selectedRating = index + 1
+        
+        // update rating depending on selected button
+        if selectedRating == rating {
+            // reset the rating to 0 if user clicked current rating
+            rating = 0
+        } else {
+            // otherwise set new rating to the selected star
+            rating = selectedRating
+        }
+        
     }
     
     //MARK: Private Methods
@@ -64,7 +80,7 @@ import UIKit
             
             let button = UIButton()
             
-            // set the button images
+            // set the button images for different states
             button.setImage(emptyStar, for: UIControlState.normal)
             button.setImage(filledStar, for: UIControlState.selected)
             button.setImage(highlightedStar, for: UIControlState.highlighted)
@@ -84,5 +100,9 @@ import UIKit
             // add newly created in loop button to the ratingButton array
             ratingButtons.append(button)
         }
+    }
+    
+    private func updateButtonSelectionStates() {
+        
     }
 }
