@@ -13,12 +13,12 @@ class Meal {
     init?(name: String, photo: UIImage?, rating: Int) {
         
         // name must be not empty
-        guard name.isEmpty else {
+        guard !name.isEmpty else {
             return nil
         }
         
         // rating must be between 0 and 5
-        guard (rating > 0) && (rating < 5) else {
+        guard (rating >= 0) && (rating <= 5) else {
             return nil
         }
         
