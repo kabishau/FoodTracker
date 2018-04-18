@@ -1,10 +1,9 @@
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: Properties
     
-    @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
@@ -13,8 +12,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // resigning the textField's first-responder status
-        // hide the keyboard
+        // resigning the textField's first-responder status - hide the keyboard
         textField.resignFirstResponder()
         return true
     }
@@ -22,7 +20,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     // this method is called right after the text field resign its first-responder status
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        mealNameLabel.text = textField.text
     }
     
     //MARK: UIImagePickerControllerDelegate
