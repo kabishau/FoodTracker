@@ -1,4 +1,6 @@
 import UIKit
+// this imports unified logging system (lets send messages to the console)
+import os.log
 
 class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -42,6 +44,29 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         photoImageView.image = selectedImage
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Navigation
+    
+    // this method lets you configure a view controller before it's presented
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // UIViewController doesn't do anything but it's a good habit in case if it is different class
+        super.prepare(for: segue, sender: sender)
+        
+        // configure the destination view controller when the save button is pressed
+        guard let button = sender as? UIBarButtonItem,
+            button === saveButton else {
+                os_log("The save button was not pressed, cancelling", log: OSLog.default, type: OSLogType.debug)
+                return
+        }
+        
+        // using nil coalescing operator ??
+        let name = nameTextField.text ?? ""
+        let photo = photoImageView.image
+        let rating = ratingControl.rating
+        
+        // set the meal to be passed to MealTableViewController after the unwind segue
+        let meal = Meal(name: name, photo: photo, rating: rating)
     }
     
     //MARK: Actions
