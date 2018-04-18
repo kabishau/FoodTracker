@@ -88,6 +88,21 @@ class MealTableViewController: UITableViewController {
     }
     */
     
+    //MARK: Actions
+    
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? MealViewController,
+            let meal = sourceViewController.meal {
+            
+            // add new meal
+            meals.append(meal)
+            
+            let newIndexPath = IndexPath(row: meals.count, section: 0)
+
+            tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
+        }
+    }
+    
     //MARK: Private Methods
     
     // helper method
