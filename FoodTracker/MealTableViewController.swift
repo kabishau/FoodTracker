@@ -95,10 +95,9 @@ class MealTableViewController: UITableViewController {
             let meal = sourceViewController.meal {
             
             // add new meal
-            meals.append(meal)
             
             let newIndexPath = IndexPath(row: meals.count, section: 0)
-
+            meals.append(meal)
             tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
         }
     }
