@@ -112,7 +112,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Meal" id="fha-GH-ytG">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AsB-eW-Jec"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AsB-eW-Jec">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="oqH-eY-ypB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="04p-wF-RPS">
                             <connections>
                                 <segue destination="Gpt-3I-GA0" kind="unwind" unwindAction="unwindToMealListWithSender:" id="cim-bC-etJ"/>
@@ -142,7 +146,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dw6-rJ-Se7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ggq-ct-6aL">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -160,7 +163,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2wy-2i-Hk3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jsu-Yx-97O">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

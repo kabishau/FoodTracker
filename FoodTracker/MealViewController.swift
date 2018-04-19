@@ -57,6 +57,12 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     //MARK: Navigation
     
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        
+        // dismiss modal scene and animates the transition back to the previous scene
+        dismiss(animated: true, completion: nil)
+    }
+    
     // this method lets you configure a view controller before it's presented
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // UIViewController doesn't do anything but it's a good habit in case if it is different class
