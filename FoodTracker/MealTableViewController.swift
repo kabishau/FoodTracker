@@ -116,11 +116,24 @@ class MealTableViewController: UITableViewController {
         if let sourceViewController = sender.source as? MealViewController,
             let meal = sourceViewController.meal {
             
-            // add new meal
-            
-            let newIndexPath = IndexPath(row: meals.count, section: 0)
-            meals.append(meal)
-            tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
+            // if this exists it means user selected a row in table view
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                
+                // update an existing meal in the meals array
+                meals[selectedIndexPath.row] = meal
+                // reloads appropriate row in the table view
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                
+                // add new meal
+                
+                let newIndexPath = IndexPath(row: meals.count, section: 0)
+                
+                meals.append(meal)
+                
+                tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
+                
+            }
         }
     }
     
