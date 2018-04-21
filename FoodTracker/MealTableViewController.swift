@@ -7,15 +7,7 @@ class MealTableViewController: UITableViewController {
     
     var meals = [Meal]()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // this creates "edit" button with built-in behavior
-        navigationItem.leftBarButtonItem = editButtonItem
-        
-        // load the sample data
-        loadSampleMeals()
-    }
+    
 
     // MARK: - Table view data source
 
@@ -121,6 +113,16 @@ class MealTableViewController: UITableViewController {
     }
     
     //MARK: Actions
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // this creates "edit" button with built-in behavior
+        navigationItem.leftBarButtonItem = editButtonItem
+        
+        // load the sample data
+        loadSampleMeals()
+    }
     
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? MealViewController,
