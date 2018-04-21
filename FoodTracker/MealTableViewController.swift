@@ -62,6 +62,10 @@ class MealTableViewController: UITableViewController {
             
             // deleting the meal from the data source
             meals.remove(at: indexPath.row)
+            
+            // saving results
+            saveMeals()
+            
             // this removes the row from table view
             tableView.deleteRows(at: [indexPath], with: .fade)
             
@@ -127,10 +131,11 @@ class MealTableViewController: UITableViewController {
                 
                 // update an existing meal in the meals array
                 meals[selectedIndexPath.row] = meal
+                
                 // reloads appropriate row in the table view
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             } else {
-                
+ 
                 // add new meal
                 
                 let newIndexPath = IndexPath(row: meals.count, section: 0)
@@ -138,9 +143,13 @@ class MealTableViewController: UITableViewController {
                 meals.append(meal)
                 
                 tableView.insertRows(at: [newIndexPath], with: UITableViewRowAnimation.automatic)
-                
+               
             }
         }
+        
+        // save the meals
+        saveMeals()
+        
     }
     
     //MARK: Private Methods
