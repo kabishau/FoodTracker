@@ -18,6 +18,13 @@ class Meal: NSObject, NSCoding {
     var photo: UIImage?
     var rating: Int
     
+    //MARK: Archiving Paths
+    
+    // mark these constants static we set to belong to the class, so we make sure it will be just one copy of these objects no matter how many instances of the class will exist
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
+    
     //MARK: Initialization
     
     init?(name: String, photo: UIImage?, rating: Int) {
