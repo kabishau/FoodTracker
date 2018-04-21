@@ -1,8 +1,18 @@
 import UIKit
 
-class Meal {
+
+// to conform NSCoding Meal needs to subclass NSObject
+class Meal: NSObject, NSCoding {
     
     //MARK: Properties
+    
+    struct PropertyKey {
+        
+        // static indicates that the constant belong to struct itself, not the instance of the structure
+        static let name = "name"
+        static let photo = "photo"
+        static let rating = "rating"
+    }
     
     var name: String
     var photo: UIImage?
@@ -25,5 +35,13 @@ class Meal {
         self.name = name
         self.photo = photo
         self.rating = rating
+    }
+    
+    //MARK: NSCoding
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: PropertyKey.name)
+        aCoder.encode(photo, forKey: PropertyKey.photo)
+        aCoder.encode(rating, forKey: PropertyKey.rating)
     }
 }
