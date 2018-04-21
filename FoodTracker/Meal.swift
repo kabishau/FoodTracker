@@ -1,5 +1,5 @@
 import UIKit
-
+import os.log
 
 // to conform NSCoding Meal needs to subclass NSObject
 class Meal: NSObject, NSCoding {
@@ -44,4 +44,27 @@ class Meal: NSObject, NSCoding {
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
     }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        
+        // the name is required; if we can't decode a name string, the initializer should fail
+        guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
+            os_log("Unable to decode the name for a Meal object.", log: .default, type: .debug)
+            return nil
+        }
+        
+        
+        // because photo is an optional property of Meal, just use conditional cast
+        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
+        
+        // using decodeInteger instead of decodeObject
+        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
+        
+        self.init(name: name, photo: photo, rating: rating)
+        
+    }
 }
+
+
+
+
