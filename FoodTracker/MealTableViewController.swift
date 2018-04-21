@@ -120,8 +120,12 @@ class MealTableViewController: UITableViewController {
         // this creates "edit" button with built-in behavior
         navigationItem.leftBarButtonItem = editButtonItem
         
-        // load the sample data
-        loadSampleMeals()
+        if let savedMeals = loadMeals() {
+            meals += savedMeals
+        } else {
+            // load the sample data
+            loadSampleMeals()
+        }
     }
     
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
