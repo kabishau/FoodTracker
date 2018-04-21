@@ -166,5 +166,27 @@ class MealTableViewController: UITableViewController {
         
         meals += [meal1, meal2, meal3]
     }
+    
+    private func saveMeals() {
+        
+        // method attempts to archive the meals to a specific location and return true if it's successfull
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Meals successfully saved", log: .default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: .default, type: .debug)
+        }
+        
+    }
 
 }
+
+
+
+
+
+
+
+
+
